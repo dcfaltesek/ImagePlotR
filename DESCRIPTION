@@ -1,16 +1,23 @@
 Package: ImagePlotX
-Title: What the Package Does (One Line, Title Case)
+Title: Tidy Adjacent Image Plotting
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Daniel",
+           family = "Faltesek",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "daniel.faltesek@oregonstate.edu",
+           comment = c(ORCID = "0000-0002-6265-518X"))
+Description: Methods for the analysis of images and plotting of images akin to Fiji/ImageJ.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports:
+    dplyr,
+    ggplot2,
+    ggimage,
+    imager,
+    magick,
+    purr,
+    tidyr
