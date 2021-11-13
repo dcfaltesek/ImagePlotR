@@ -20,4 +20,5 @@ Imports:
     imager,
     magick,
     purr,
-    tidyr
+    tidyr,
+    tesseract
