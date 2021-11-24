@@ -575,7 +575,7 @@ edge_lower<- function(x){
     skewness(R15$value),
     skewness(R16$value)
   )
-  edge_results <<- data.frame(images, PQ, ST)
+  edge_results <- data.frame(images, PQ, ST)
 }
 
 symmetry_lower <- function(x) {
