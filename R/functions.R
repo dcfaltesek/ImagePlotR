@@ -177,9 +177,8 @@ edge_analysis <- function(images) {
   ml_images<-images$local_path%>%
     purrr::map( ~ magick::image_read(.))
   edged_R<-purrr::map_df(1:length(ml_images), ~ data.frame(
-    a = .x,
     d = edge_lower(ml_images[[.x]])))
-  edged_images<<-dplyr::distinct(edged_R, a, .keep_all=TRUE)
+  edged_images<<-dplyr::distinct(edged_R, .keep_all=TRUE)
   print("edge analysis complete")
 }
 
