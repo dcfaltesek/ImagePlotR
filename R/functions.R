@@ -176,9 +176,9 @@ thirds_images <- function(images) {
 edge_analysis <- function(images) {
   ml_images<-images$local_path%>%
     purrr::map( ~ magick::image_read(.))
-  edged_R<-purrr::map_df(edge_lower(ml_images[[.x]])))
-  edged_images<<-dplyr::distinct(edged_R, .keep_all=TRUE)
-  print("edge analysis complete")
+  edged_R<-purrr::map_df(edge_lower(ml_images[[.x]]))
+                         edged_images<<-dplyr::distinct(edged_R, .keep_all=TRUE)
+                         print("edge analysis complete")
 }
 
 #' Function to extract image colors
