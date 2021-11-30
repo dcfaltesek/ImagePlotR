@@ -522,8 +522,8 @@ edge_lower<- function(x){
   R15_edge_dev <- sd(R15$value)
   R16_edge_dev <- sd(R16$value)
 
-  PQ <- data.frame(
-    images, R1_edge, R1_edge_dev,
+return<-data.frame(
+    R1_edge, R1_edge_dev,
     R2_edge, R2_edge_dev,
     R3_edge, R3_edge_dev,
     R4_edge, R4_edge_dev,
@@ -538,10 +538,7 @@ edge_lower<- function(x){
     R13_edge, R13_edge_dev,
     R14_edge, R14_edge_dev,
     R15_edge, R15_edge_dev,
-    R16_edge, R16_edge_dev
-  )
-
-  ST <- data.frame(
+    R16_edge, R16_edge_dev,
     kurtosis(R1$value),
     kurtosis(R2$value),
     kurtosis(R3$value),
@@ -575,7 +572,7 @@ edge_lower<- function(x){
     skewness(R15$value),
     skewness(R16$value)
   )
-  edge_results <- data.frame(images, PQ, ST)
+  edge_results <- data.frame(Return)
 }
 
 symmetry_lower <- function(x) {
