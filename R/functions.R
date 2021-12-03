@@ -47,7 +47,7 @@ convert_and_import<-function(x){
 
 lower_converter <- function(x){
   Z<-magick::image_read(x)
-  ZZtop<-magick::image_convert(Z, matte = TRUE, format = "png")
+  ZZtop<-magick::image_convert(Z, matte = TRUE, strip = TRUE, format = "png")
   magick::image_write(ZZtop, paste("converted/",stringi::stri_rand_strings(1, 5, pattern = "[A-Za-z0-9]"),".png", sep = ""), format = "png")
 }
 
