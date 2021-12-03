@@ -44,13 +44,15 @@ convert_and_import<-function(x){
   converted_images<<-data.frame(local_path= list.files("converted", full.names = TRUE), old_local_path = images$local_path)
 }
 
-
-lower_converter <- function(x){
-  Z<-magick::image_read(x)
-  ZZtop<-magick::image_convert(Z, matte = TRUE, strip = TRUE, format = "png")
-  magick::image_write(ZZtop, paste("converted/",stringi::stri_rand_strings(1, 5, pattern = "[A-Za-z0-9]"),".png", sep = ""), format = "png")
+#function called by convert and import
+lower_converterb<-function(x){
+  Z <- magick::image_read(x)
+  ZZbop <- magick::image_convert(Z, matte = TRUE, format = "png")
+   #removes corrupted metadata from files
+  ZZtop<-magick::image_strip(ZZbop)
+  magick::image_write(ZZtop, paste("converted/", stringi::stri_rand_strings(1, 
+                                                                            5, pattern = "[A-Za-z0-9]"), ".png", sep = ""), format = "png")
 }
-
 
 
 # reasonably fast, somewhat annoying to parse through a magick pointer
@@ -662,6 +664,7 @@ symmetry_lower <- function(x) {
   )
 }
 
+#function that is recursively called by colors_analysis
 lower_colors <- function(x) {
   loader <- colordistance::loadImage(x, sample.size = 5000)
   plot <- loader$filtered.rgb.2d
