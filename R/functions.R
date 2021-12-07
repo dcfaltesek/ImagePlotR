@@ -45,7 +45,7 @@ convert_and_import<-function(x){
 }
 
 #function called by convert and import
-lower_converterb<-function(x){
+lower_converter<-function(x){
   Z <- magick::image_read(x)
   ZZbop <- magick::image_convert(Z, matte = TRUE, format = "png")
    #removes corrupted metadata from files
