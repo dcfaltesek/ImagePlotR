@@ -699,3 +699,36 @@ lower_colors <- function(x) {
     mean_hue, deviation_hue, mean_saturation, deviation_saturation, mean_value, deviation_saturation, luminance, lum_contrast
   )
 }
+
+
+
+# linear loader
+#' Gets image symmetry
+#'
+#' @title convert_and_importB
+#'
+#' @param images Folder where images are stored
+#'
+#' @details Loader function that imports in original director order
+#' @return A dataframe with dummy names organized in the process order of the original directory
+#' @export
+#'
+#' @examples
+#' symmetry(here("Images/"))
+convert_and_importB<-function(x){
+  dir.create("converted")
+  purrr::map(.x = x$local_path, .f=lower_converterB)
+  converted_images<-data.frame(local_path= list.files("converted", full.names = TRUE), time=file.mtime(local_path= list.files("converted", full.names = TRUE)))
+  converted_images<-converted_images %>% arrange(time)
+  converted_images<<-bind_cols(converted_images, "old_path"=x$local_path)
+}
+
+#function called by convert and import
+lower_converterB<-function(x){
+  Z <- magick::image_read(x)
+  ZZbop <- magick::image_convert(Z, matte = TRUE, format = "png")
+  #removes corrupted metadata from files
+  ZZtop<-magick::image_strip(ZZbop)
+  YY<-paste("converted/", stringi::stri_rand_strings(1, 5, pattern = "[A-Za-z0-9]"), ".png", sep = "")
+  magick::image_write(ZZtop, YY, format = "png")
+}
